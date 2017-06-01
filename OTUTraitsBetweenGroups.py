@@ -9,6 +9,7 @@
 
 import argparse
 import re
+import os
 
 #################################
 
@@ -43,17 +44,18 @@ columnraw = args.column
 columnList = columnraw.split(",")
 
 outputFolder = args.outputFolder
+os.system('mkdir ' + outputFolder)
 
 #################################
-#TESTING
-
-inputList = ['/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestExNWater_test.txt','/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestMastWater.txt','/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestNereoMastWater.txt','/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestNereoWater.txt']
-columnList = ['FoldChangeAve']
+# #TESTING
+# 
+# inputList = ['/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestExNWater_test.txt','/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestMastWater.txt','/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestNereoMastWater.txt','/Users/melissachen/Documents/Masters/Project_Masters/Project_MacroalgaeSource/TEMP_frombotclust/WATERCORE_Enrichment_of_unique_OTUs/NereotestNereoWater.txt']
+# columnList = ['FoldChangeAve']
 #################################
 
 
 def loadTable(tableFP): # Loads and converts to relative traitance
-	tableOpen = open(tableFP, 'r') # This is in Unix format
+	tableOpen = open(tableFP, 'U') # This is in Unix format
 	tableTemp = []
 	for i in tableOpen:
 		tempLine = i.strip()
@@ -110,6 +112,8 @@ for trait in columnList:
 		traitsTable[trait][OTU] = {}
 		for treatment in allTables:
 			if OTU in allTables[treatment].keys():
+				print traitsTable
+				print allTables[treatment][OTU]
 				traitsTable[trait][OTU][treatment] = allTables[treatment][OTU][trait]
 				traitsTable[trait][OTU]['taxonomy'] = allTaxaID[treatment][OTU]
 			else:

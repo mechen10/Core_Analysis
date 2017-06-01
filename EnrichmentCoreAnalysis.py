@@ -72,7 +72,7 @@ def loadOTUTable(OTUFP): # Loads and converts to relative abundance
 	# Make OTU Table
 	os.system('biom convert -i ' + OTUFP + ' --to-tsv --header-key taxonomy -o OTU_Table_text.txt')
 	# Load OTU Table
-	biomOpen = open("OTU_Table_text.txt", 'r') # This is in Unix format
+	biomOpen = open("OTU_Table_text.txt", 'U') # This is in Unix format
 	biomTemp = []
 	for i in biomOpen:
 		tempLine = i.strip()
