@@ -112,8 +112,7 @@ for trait in columnList:
 		traitsTable[trait][OTU] = {}
 		for treatment in allTables:
 			if OTU in allTables[treatment].keys():
-				print traitsTable
-				print allTables[treatment][OTU]
+
 				traitsTable[trait][OTU][treatment] = allTables[treatment][OTU][trait]
 				traitsTable[trait][OTU]['taxonomy'] = allTaxaID[treatment][OTU]
 			else:
