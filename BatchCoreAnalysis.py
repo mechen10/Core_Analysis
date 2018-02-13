@@ -17,7 +17,7 @@ import copy
 #################################
 
 parser = argparse.ArgumentParser(
-	description="Takes OTU table, metadata, and column:treatment to find core OTUs in each treatment")
+	description="Takes OTU table, metadata, and column:treatment to find core OTUs in each treatment ***AUTOMATICALLY DELETES LOW ABUNDANCE OTUS ***")
 parser.add_argument(
 	'-i',
 	'--OTU_table',
